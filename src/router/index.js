@@ -5,6 +5,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    component: () => import('@/views/layout')// 默认打开布局页
+    // redirect: '/login' // 重定向，默认登录页
+  },
+  {
     path: '/reg',
     // webpack提供的import函数来路由懒加载导入
     // 路由懒加载，就是页面路由路径切换到/reg，才去加载对应组件代码
@@ -15,6 +20,7 @@ const routes = [
     path: '/login',
     component: () => import('@/views/login')
   }
+
 ]
 
 const router = new VueRouter({

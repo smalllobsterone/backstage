@@ -41,11 +41,12 @@
 <script>
 // 前端绑定诗句对象属性名，可以直接给要调用的功能接口的参数名一致
 // 可以直接吧前端对象（带着同名属性和前端的值）发送给后台
+import { registerAPI } from '@/api'
 
 export default {
   data () {
     // 需要通过this访问组件内部变量regform，拿到密码值，做判断
-    // 注意:必须在data函数里定义此箭头函数，才能确保this.form使用
+    // 注意:必须在data函数里定义此箭头函数，才能确保this.form使用 todo
     const samePwdFn = (rule, value, callback) => {
       if (value !== this.regForm.password) {
         // 如果验证失败，则调用 回调函数时，指定一个 Error 对象。
@@ -107,15 +108,23 @@ export default {
     }
   },
   methods: {
-    // 注册的点击事件
+    // todo 注册的点击事件
     registerFn () {
       // 此段功能: 当用户未填写完数据或失焦，直接点击注册按钮，自动出提示
       // js兜底校验 validate方法是表单组件自带的，用来对表单内容进行检验。
       // 需要在模板中添加对表单组件的引用：ref
-      this.$refs.regRef.validate(valid => {
+      this.$refs.regRef.validate(async valid => {
         if (valid) {
           // 通过校验
-          console.log(this.regForm)
+          // 1. 调用注册接口  把axios返回的数据对象里data字段对应的值保存在对象
+          const { data: res } = await registerAPI(this.regForm)
+          console.log(res)
+          // 2. 注册失败，提示用户  弹窗提示$message  不为0进异步 return阻止代码往下执行
+          if (res.code !== 0) return this.$message.error(res.message)
+          // 3. 注册成功，提示用户
+          this.$message.success(res.message)
+          // 4. 跳转到登录页面
+          this.$router.push('/login')
         } else {
           return false // 阻止默认的提交行为（表单下面的红色提示自动出现）
         }
