@@ -19,7 +19,7 @@ module.exports = {
       'error',
       {
         ignores: ['index'] // 需要忽略的组件名
-      }
-    ]
+      }]
   }
 }
+

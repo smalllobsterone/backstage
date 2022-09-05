@@ -75,7 +75,7 @@ export default {
   // 核心思想:通过表单校验,收集用户输入内容,调用接口带给后台验证,返回响应结果,前端给用户提示结果
   methods: {
     // 映射到组件原地
-    ...mapMutations(['updataToken']),
+    ...mapMutations(['updateToken']),
     // 登录点击事件
     loginFn () {
       this.$refs.loginRef.validate(async valid => {
