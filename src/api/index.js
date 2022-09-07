@@ -205,11 +205,11 @@ export const uploadArticleAPI = (fd) => {
 }
 
 /**
- * 获取文章列表
+ * 获取文章列表 查询字符串
  * @returns Promise对象
  */
 // eslint-disable-next-line camelcase
-export const getArticleListAPI = (pagenum, pagesize, cate_id, state) => {
+export const getArticleListAPI = ({ pagenum, pagesize, cate_id, state }) => {
   return request({
     url: '/my/article/list',
     params: {

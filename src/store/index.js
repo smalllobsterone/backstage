@@ -28,13 +28,13 @@ export default new Vuex.Store({
   },
   actions: {
     // 发请求-用户信息,promise对象拿结果,直接提交commit保存在state
-    async getUserInfoActions (store, val) {
+    async getUserInfoActions (store) {
       const res = await getUserInfoAPI()// 自动拿token，不需要传参
       console.log(res)
       store.commit('updateUserInfo', res.data.data)
     }
   },
   modules: {},
-  // 调用插件
+  // 调用持久化插件
   plugins: [createPersistedState()]
 })

@@ -81,7 +81,6 @@ export default {
       this.$refs.userFormRef.validate(async valid => {
         if (valid) {
           // 验证成功
-          console.log(this.userForm)
           // 根据接口文档指示, 需要携带id(必须)
           this.userForm.id = this.$store.state.userInfo.id
           // todo 调用更新用户基本信息接口, 把用户在页面输入的新内容传给后台保存
