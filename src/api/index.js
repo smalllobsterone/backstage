@@ -1,6 +1,6 @@
 // 接口统一管理，封装的是具体的接口请求方法
 // 每个方法只负责请求一个url
-import request from '@/untils/request'
+import request from '@/utils/request'
 // 直接引入store对象，不采用this.$store
 
 // registerAPI(this.regForm)接受那三个传参//todo
